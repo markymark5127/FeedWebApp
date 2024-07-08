@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';  // Import FormsModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FeedComponent } from './feed/feed.component';
 import { LoginComponent } from './login/login.component';
 import { NotificationComponent } from './notification/notification.component';
 import { PostComponent } from './post/post.component';
-import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FeedComponent,
     LoginComponent,
     NotificationComponent,
-    PostComponent,
-    FeedComponent
+    PostComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,  // Add FormsModule here
     AppRoutingModule
   ],
   providers: [],
