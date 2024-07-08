@@ -43,12 +43,12 @@ export class LoginComponent implements OnInit {
 
   loadInstagramSDK() {
     // Load the Instagram SDK asynchronously
-    ((d, s, id) => {
+    ((d, s, id, url) => {
       let js: HTMLScriptElement, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) { return; }
       js = d.createElement(s) as HTMLScriptElement; // Type assertion here
       js.id = id;
-      js.src = "https://www.instagram.com/static/bundles/es6/EmbedSDK.js";
+      js.src = url;
       fjs?.parentNode?.insertBefore(js, fjs);
     })(document, 'script', 'instagram-sdk', 'https://www.instagram.com/static/bundles/es6/EmbedSDK.js');
   }
