@@ -1,41 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-  }
-  .navbar {
-    display: flex;
-    justify-content: space-around;
-    background-color: #333;
-    padding: 10px 0;
-  }
-  .navbar a {
-    color: white;
-    text-align: center;
-    flex-grow: 1;
-    padding: 10px 0;
-    text-decoration: none;
-  }
-  .navbar a:hover {
-    background-color: #575757;
-  }
-  .navbar i {
-    display: block;
-    font-size: 24px;
-  }
-  .banner {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    font-size: 24px;
-  }
-  .banner img {
-    width: 30px; /* Adjust the width as needed */
-    margin-right: 10px;
-  }
+/* Ensure the html and body take up the full height of the viewport */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The app-root should take up the remaining height after the banner */
+app-root {
+  flex-grow: 1;
+}
+
+/* Styling for the banner */
+.banner {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  font-size: 24px;
+}
+
+/* Styling for the banner image */
+.banner img {
+  width: 30px; /* Adjust the width as needed */
+  margin-right: 10px;
+}
+
+/* Styling for the navbar */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.navbar a {
+  color: white;
+  text-align: center;
+  flex-grow: 1;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #575757;
+}
+
+.navbar i {
+  display: block;
+  font-size: 24px;
+}
