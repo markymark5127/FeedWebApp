@@ -1,1 +1,30 @@
-<p>notification works!</p>
+<div class="notification-container">
+    <!-- Facebook Notifications -->
+    <div class="facebook-notifications" *ngIf="isLoggedIn('facebook')">
+      <h2><i class="fab fa-facebook-square"></i> Facebook Notifications</h2>
+      <div *ngFor="let notification of facebookNotifications" class="notification-card">
+        <div class="notification-body">
+          <p>{{ notification.title }}</p>
+          <p>{{ notification.body }}</p>
+          <!-- Add more fields as needed -->
+        </div>
+      </div>
+    </div>
+  
+    <!-- Instagram Notifications -->
+    <div class="instagram-notifications" *ngIf="isLoggedIn('instagram')">
+      <h2><i class="fab fa-instagram"></i> Instagram Notifications</h2>
+      <div *ngFor="let notification of instagramNotifications" class="notification-card">
+        <div class="notification-body">
+          <p>{{ notification.message }}</p>
+          <!-- Add more fields as needed -->
+        </div>
+      </div>
+    </div>
+  
+    <!-- Placeholder when not logged in -->
+    <div class="not-logged-in" *ngIf="!isLoggedIn('facebook') && !isLoggedIn('instagram')">
+      <p>Please log in to view notifications.</p>
+    </div>
+  </div>
+  
