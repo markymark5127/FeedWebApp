@@ -20,13 +20,13 @@ export class LoginComponent implements OnInit {
     // Initialization and usage handled here
     (window as any).fbAsyncInit = function() {
       FB.init({
-        appId      : '2226367154394422', // Replace with your Facebook App ID
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v12.0'
+        appId: '2226367154394422', // Replace with your Facebook App ID
+        cookie: true,
+        xfbml: true,
+        version: 'v12.0'
       });
-      
-      FB.AppEvents.logPageView();   
+
+      FB.AppEvents.logPageView();
     };
 
     // Load the SDK asynchronously (already done in index.html)
@@ -36,9 +36,10 @@ export class LoginComponent implements OnInit {
   loginWithFacebook() {
     FB.login((response: any) => {
       if (response.authResponse) {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', { fields: 'name,email' }, (response: any) => {
-          console.log('Good to see you, ' + response.name + '.');
+        console.log('Welcome! Fetching your information.... ');
+        FB.api('/me', { fields: 'name,email' }, (apiResponse: any) => {
+          console.log('Good to see you, ' + apiResponse.name + '.');
+          // Optionally handle further actions after login success
         });
       } else {
         console.log('User cancelled login or did not fully authorize.');

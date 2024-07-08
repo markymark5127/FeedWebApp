@@ -1,13 +1,9 @@
-<div class="card">
-    <i class="fab fa-facebook facebook-icon"></i>
-    <div class="card-content">
-      <h2>Card Title</h2>
-      <img src="https://placekitten.com/200/300" alt="Picture">
-      <video controls>
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut arcu nec lorem elementum finibus.</p>
+<div class="facebook-feed">
+  <h2>Facebook Feed</h2>
+  <div *ngFor="let post of facebookPosts">
+    <div class="post">
+      <p>{{ post.message }}</p>
+      <!-- Add more fields as needed, e.g., post.created_time, post.story, etc. -->
     </div>
   </div>
-  
+</div>

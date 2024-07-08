@@ -1,0 +1,28 @@
+/* Customize these styles according to your design */
+
+.facebook-login-btn {
+    background-color: #3b5998; /* Facebook blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  .facebook-login-btn:hover {
+    background-color: #2d4373; /* Darker shade of Facebook blue */
+  }
+  
+  .facebook-login-btn i {
+    margin-right: 10px;
+  }
+  
+  .facebook-login-btn:focus {
+    outline: none;
+    /* Add focus styles if needed */
+  }
+  
