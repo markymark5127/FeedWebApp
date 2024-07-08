@@ -25,4 +25,30 @@
     outline: none;
     /* Add focus styles if needed */
   }
-  
+  /* Customize these styles according to your design */
+
+.instagram-login-btn {
+  background-color: #c13584; /* Instagram pink */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.instagram-login-btn:hover {
+  background-color: #a9336e; /* Darker shade of Instagram pink */
+}
+
+.instagram-login-btn i {
+  margin-right: 10px;
+}
+
+.instagram-login-btn:focus {
+  outline: none;
+  /* Add focus styles if needed */
+}
