@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { NgForm } from '@angular/forms';
+import { SocialAuthService } from 'angularx-social-login';
+import { FacebookLoginProvider } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-post',
@@ -7,39 +11,48 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
+
   postText: string = '';
   postImage: File | null = null;
   postVideo: File | null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
+  
 
-  onFileChange(event: any, type: string) {
+  onFileChange(event: any, fileType: string) {
     const file = event.target.files[0];
-    if (type === 'image') {
+    if (fileType === 'image') {
       this.postImage = file;
-    } else if (type === 'video') {
+    } else if (fileType === 'video') {
       this.postVideo = file;
     }
   }
 
   onSubmit() {
     const formData = new FormData();
-    formData.append('message', this.postText); // Updated to 'message' as it is required for Facebook API
+    formData.append('message', this.postText);
+
     if (this.postImage) {
-      formData.append('source', this.postImage);
-    }
-    if (this.postVideo) {
-      formData.append('source', this.postVideo);
+      formData.append('image', this.postImage);
     }
 
+    if (this.postVideo) {
+      formData.append('video', this.postVideo);
+    }
+    
     this.authService.postToFeed(formData).subscribe(response => {
-      console.log('Post successful', response);
-      // Reset the form
-      this.postText = '';
-      this.postImage = null;
-      this.postVideo = null;
-    }, error => {
-      console.error('Error posting', error);
+      if (response.error) {
+        alert('Failed to post: ' + response.error);
+      } else {
+        alert('Posted successfully');
+        this.clearForm();
+      }
     });
+  }
+
+  clearForm() {
+    this.postText = '';
+    this.postImage = null;
+    this.postVideo = null;
   }
 }
