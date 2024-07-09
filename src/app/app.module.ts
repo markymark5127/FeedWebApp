@@ -1,6 +1,7 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -10,7 +11,6 @@ import { FeedComponent } from './feed/feed.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AuthService } from './auth.service';
 
-// Define your routes
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -30,7 +30,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)  // Import RouterModule and set up routes
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

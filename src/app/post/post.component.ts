@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -6,32 +6,40 @@ import { AuthService } from '../auth.service';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit {
-  facebookUser: any;
-  instagramUser: any;
-  postContent: string = '';
+export class PostComponent {
+  postText: string = '';
+  postImage: File | null = null;
+  postVideo: File | null = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.authService.facebookAuth$.subscribe(userData => {
-      this.facebookUser = userData;
-    });
-
-    this.authService.instagramAuth$.subscribe(userData => {
-      this.instagramUser = userData;
-    });
+  onFileChange(event: any, type: string) {
+    const file = event.target.files[0];
+    if (type === 'image') {
+      this.postImage = file;
+    } else if (type === 'video') {
+      this.postVideo = file;
+    }
   }
 
-  makePost() {
-    if (this.facebookUser) {
-      // Implement logic to post on Facebook
-      console.log('Posting on Facebook:', this.postContent);
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('message', this.postText); // Updated to 'message' as it is required for Facebook API
+    if (this.postImage) {
+      formData.append('source', this.postImage);
+    }
+    if (this.postVideo) {
+      formData.append('source', this.postVideo);
     }
 
-    if (this.instagramUser) {
-      // Implement logic to post on Instagram
-      console.log('Posting on Instagram:', this.postContent);
-    }
+    this.authService.postToFeed(formData).subscribe(response => {
+      console.log('Post successful', response);
+      // Reset the form
+      this.postText = '';
+      this.postImage = null;
+      this.postVideo = null;
+    }, error => {
+      console.error('Error posting', error);
+    });
   }
 }

@@ -1,17 +1,22 @@
-<div class="notification-container">
-  <div class="facebook-notifications" *ngIf="facebookUser">
-    <h2><i class="fab fa-facebook-square"></i> Facebook Notifications</h2>
-    <div *ngFor="let notification of facebookNotifications" class="notification-card">
-      <p>{{ notification.title }}</p>
-      <!-- Add more fields as needed -->
+<div class="notifications">
+  <h2>Notifications</h2>
+  <div class="facebook-notifications">
+    <h3>Facebook</h3>
+    <div *ngFor="let notification of facebookNotifications">
+      <div class="notification">
+        <p>{{ notification.title }}</p>
+        <!-- Add more fields as needed -->
+      </div>
     </div>
   </div>
-
-  <div class="instagram-notifications" *ngIf="instagramUser">
-    <h2><i class="fab fa-instagram"></i> Instagram Notifications</h2>
-    <div *ngFor="let notification of instagramNotifications" class="notification-card">
-      <p>{{ notification.title }}</p>
-      <!-- Add more fields as needed -->
+  
+  <div class="instagram-notifications">
+    <h3>Instagram</h3>
+    <div *ngFor="let notification of instagramNotifications">
+      <div class="notification">
+        <p>{{ notification.message }}</p>
+        <!-- Add more fields as needed -->
+      </div>
     </div>
   </div>
 </div>

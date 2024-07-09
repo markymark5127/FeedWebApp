@@ -1,31 +1,26 @@
-.notification-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.notification-card {
-  background-color: #ffffff;
+/* Container for the notifications */
+.notifications {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  padding: 20px;
+  background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
 }
 
-.notification-card h2 {
-  font-size: 18px;
+/* Styling for notification headers */
+.notifications h2, .facebook-notifications h3, .instagram-notifications h3 {
+  color: #333;
   margin-bottom: 10px;
-  display: flex;
-  align-items: center;
 }
 
-.notification-card i {
-  margin-right: 8px;
+/* Styling for individual notifications */
+.notification {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.notification-card p {
-  margin: 0;
+.notification:last-child {
+  border-bottom: none;
 }

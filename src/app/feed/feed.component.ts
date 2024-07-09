@@ -10,7 +10,7 @@ declare var FB: any;
 })
 export class FeedComponent implements OnInit {
   facebookUser: any;
-  instagramUser: any;
+  instagramUser: any; // Placeholder for Instagram user data
   facebookPosts: any[] = [];
   instagramPosts: any[] = [];
 
@@ -32,8 +32,16 @@ export class FeedComponent implements OnInit {
     });
   }
 
+  // Fetch Facebook feed
   getFacebookFeed() {
-    FB.api('/me/feed', 'GET', {}, (response: any) => {
+    // Check if FB object is loaded
+    if (!(window as any).FB) {
+      console.error('Facebook SDK not loaded.');
+      return;
+    }
+
+    // Fetch user's feed from Facebook API
+    (window as any).FB.api('/me/feed', 'GET', {}, (response: any) => {
       if (response && !response.error) {
         this.facebookPosts = response.data;
         console.log('Facebook Feed:', this.facebookPosts);
@@ -43,8 +51,8 @@ export class FeedComponent implements OnInit {
     });
   }
 
+  // Placeholder for fetching Instagram feed
   getInstagramFeed() {
-    // Implement Instagram feed fetching logic
     console.log('Instagram feed fetching to be implemented');
   }
 }

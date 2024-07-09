@@ -7,7 +7,6 @@
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Ensure content does not overflow */
 }
 
 /* Styling for form groups */
@@ -25,14 +24,13 @@
 
 /* Styling for textarea */
 .form-group textarea {
-  width: calc(100% - 24px); /* Adjust for padding and borders */
+  width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   resize: vertical;
   transition: border-color 0.3s;
-  box-sizing: border-box; /* Ensure padding and border are included in width calculation */
 }
 
 .form-group textarea:focus {
@@ -42,14 +40,14 @@
 
 /* Styling for file inputs */
 .form-group input[type="file"] {
-  width: calc(100% - 24px); /* Adjust for padding and borders */
+  display: block;
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   background-color: #f9f9f9;
   transition: background-color 0.3s;
-  box-sizing: border-box; /* Ensure padding and border are included in width calculation */
 }
 
 .form-group input[type="file"]:hover {
@@ -81,20 +79,4 @@ button:hover {
 
 button:active {
   box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .post-form {
-    padding: 15px;
-    border-radius: 0;
-    border: none;
-    box-shadow: none;
-  }
-
-  .form-group textarea,
-  .form-group input[type="file"],
-  button {
-    font-size: 14px;
-  }
 }
