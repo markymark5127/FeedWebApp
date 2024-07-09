@@ -1,23 +1,17 @@
 <div class="feed-container">
-  <!-- Facebook Feed -->
-  <div class="facebook-feed" *ngIf="isLoggedIn('facebook')">
+  <div class="facebook-feed" *ngIf="facebookUser">
     <h2><i class="fab fa-facebook-square"></i> Facebook Feed</h2>
-    <div *ngFor="let post of facebookPosts" class="card">
-      <div class="card-body">
-        <p>{{ post.message }}</p>
-        <!-- Add more fields as needed, e.g., post.created_time, post.story, etc. -->
-      </div>
+    <div *ngFor="let post of facebookPosts" class="feed-card">
+      <p>{{ post.message }}</p>
+      <!-- Add more fields as needed -->
     </div>
   </div>
 
-  <!-- Instagram Feed -->
-  <div class="instagram-feed" *ngIf="isLoggedIn('instagram')">
+  <div class="instagram-feed" *ngIf="instagramUser">
     <h2><i class="fab fa-instagram"></i> Instagram Feed</h2>
-    <!-- Add Instagram feed structure here -->
-  </div>
-
-  <!-- Placeholder when not logged in -->
-  <div class="not-logged-in" *ngIf="!isLoggedIn('facebook') && !isLoggedIn('instagram')">
-    <p>Please log in to view feeds.</p>
+    <div *ngFor="let post of instagramPosts" class="feed-card">
+      <p>{{ post.message }}</p>
+      <!-- Add more fields as needed -->
+    </div>
   </div>
 </div>
