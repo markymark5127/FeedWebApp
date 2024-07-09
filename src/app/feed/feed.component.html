@@ -1,4 +1,8 @@
 <div class="feed-container">
+  <div *ngIf="!facebookUser && !instagramUser">
+    <h2>Please log in to view your feeds</h2>
+  </div>
+
   <div class="facebook-feed" *ngIf="facebookUser">
     <h2><i class="fab fa-facebook-square"></i> Facebook Feed</h2>
     <div *ngFor="let post of facebookPosts" class="feed-card">

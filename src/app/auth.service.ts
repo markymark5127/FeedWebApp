@@ -32,10 +32,10 @@ export class AuthService {
 
     (window as any).fbAsyncInit = () => {
       FB.init({
-        appId      : '1395205587818906', // Replace with your app ID
-        cookie     : true,
-        xfbml      : true,
-        version    : 'v12.0'
+        appId: '1395205587818906', // instagram id: 840265504266295
+        cookie: true,
+        xfbml: true,
+        version: 'v12.0'
       });
       FB.AppEvents.logPageView();
     };
@@ -63,12 +63,14 @@ export class AuthService {
           observer.next(false);
           observer.complete();
         }
-      }, { scope: 'public_profile,email,publish_actions' });
+      }, { scope: 'public_profile,email,pages_manage_posts,pages_read_engagement,publish_to_groups' });
     });
   }
 
   loginWithInstagram(): Observable<boolean> {
     return new Observable(observer => {
+      // Implement Instagram login logic here
+      // Placeholder for now
       observer.next(false);
       observer.complete();
     });
@@ -92,5 +94,23 @@ export class AuthService {
 
   isInstagramLoggedIn(): boolean {
     return this.instagramAccessToken !== null;
+  }
+
+  getFacebookFeed(): Observable<any> {
+    if (this.facebookAccessToken) {
+      const url = `${this.facebookApiUrl}?access_token=${this.facebookAccessToken}`;
+      return this.http.get<any>(url);
+    } else {
+      return of({ data: [] });
+    }
+  }
+
+  getInstagramFeed(): Observable<any> {
+    if (this.instagramAccessToken) {
+      const url = `${this.instagramApiUrl}?access_token=${this.instagramAccessToken}`;
+      return this.http.get<any>(url);
+    } else {
+      return of({ data: [] });
+    }
   }
 }

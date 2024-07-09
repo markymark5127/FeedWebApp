@@ -10,7 +10,7 @@ declare var FB: any;
 })
 export class FeedComponent implements OnInit {
   facebookUser: any;
-  instagramUser: any; // Placeholder for Instagram user data
+  instagramUser: any;
   facebookPosts: any[] = [];
   instagramPosts: any[] = [];
 
@@ -34,14 +34,12 @@ export class FeedComponent implements OnInit {
 
   // Fetch Facebook feed
   getFacebookFeed() {
-    // Check if FB object is loaded
     if (!(window as any).FB) {
       console.error('Facebook SDK not loaded.');
       return;
     }
 
-    // Fetch user's feed from Facebook API
-    (window as any).FB.api('/me/feed', 'GET', {}, (response: any) => {
+    FB.api('/me/feed', 'GET', {}, (response: any) => {
       if (response && !response.error) {
         this.facebookPosts = response.data;
         console.log('Facebook Feed:', this.facebookPosts);
