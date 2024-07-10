@@ -39,7 +39,7 @@ export class FeedComponent implements OnInit {
       return;
     }
 
-    FB.api('/me/feed', 'GET', {}, (response: any) => {
+    FB.api('/me/feed', 'GET', { fields: 'message,picture,source' }, (response: any) => {
       if (response && !response.error) {
         this.facebookPosts = response.data;
         console.log('Facebook Feed:', this.facebookPosts);

@@ -10,6 +10,7 @@ import { PostComponent } from './post/post.component';
 import { FeedComponent } from './feed/feed.component';
 import { NotificationComponent } from './notification/notification.component';
 import { AuthService } from './auth.service';
+import { SafeUrlPipe } from './safe-url.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
     LoginComponent,
     PostComponent,
     FeedComponent,
-    NotificationComponent
+    NotificationComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,

@@ -63,7 +63,7 @@ export class AuthService {
           observer.next(false);
           observer.complete();
         }
-      }, { scope: 'public_profile,email' });
+      }, { scope: 'public_profile,email,user_posts' });
     });
   }
 
@@ -88,7 +88,7 @@ export class AuthService {
     this.instagramAuthSubject$.next(null);
   }
 
-  postToFeed(formData: FormData): Observable<any> {
+  /*postToFeed(formData: FormData): Observable<any> {
     if (this.facebookAccessToken) {
       formData.append('access_token', this.facebookAccessToken);
       return this.http.post(this.facebookApiUrl, formData);
@@ -98,7 +98,20 @@ export class AuthService {
     } else {
       return of({ error: 'User is not logged in' });
     }
-  }
+  }*/
+    postToFeed(formData: FormData): Observable<any> {
+      if (this.facebookAccessToken) {
+        const url = `${this.facebookApiUrl}?access_token=${this.facebookAccessToken}&message=${formData.get('message')}`;
+        console.log('Posting to Facebook with token:', this.facebookAccessToken);
+        return this.http.post(url, formData);
+      } else if (this.instagramAccessToken) {
+        formData.append('access_token', this.instagramAccessToken);
+        return this.http.post(this.instagramApiUrl, formData);
+      } else {
+        return of({ error: 'User is not logged in' });
+      }
+    }
+  
 
   isFacebookLoggedIn(): boolean {
     return this.facebookAccessToken !== null;

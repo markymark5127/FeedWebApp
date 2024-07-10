@@ -7,15 +7,21 @@
     <h2><i class="fab fa-facebook-square"></i> Facebook Feed</h2>
     <div *ngFor="let post of facebookPosts" class="feed-card">
       <p>{{ post.message }}</p>
-      <!-- Add more fields as needed -->
+      <img *ngIf="post.picture" [src]="post.picture" alt="Facebook post image">
+      <div *ngIf="post.source" class="video-container">
+        <iframe [src]="post.source | safeUrl" frameborder="0" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 
   <div class="instagram-feed" *ngIf="instagramUser">
     <h2><i class="fab fa-instagram"></i> Instagram Feed</h2>
     <div *ngFor="let post of instagramPosts" class="feed-card">
-      <p>{{ post.message }}</p>
-      <!-- Add more fields as needed -->
+      <p>{{ post.caption }}</p>
+      <img *ngIf="post.media_type === 'IMAGE' || post.media_type === 'CAROUSEL_ALBUM'" [src]="post.media_url" alt="Instagram post image">
+      <div *ngIf="post.media_type === 'VIDEO'" class="video-container">
+        <video controls [src]="post.media_url"></video>
+      </div>
     </div>
   </div>
 </div>
