@@ -32,14 +32,13 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  // Fetch Facebook feed
   getFacebookFeed() {
     if (!(window as any).FB) {
       console.error('Facebook SDK not loaded.');
       return;
     }
 
-    FB.api('/me/feed', 'GET', { fields: 'message,picture,source' }, (response: any) => {
+    FB.api('/me/feed', 'GET', { fields: 'message,attachments{media{image,source},type,subattachments}' }, (response: any) => {
       if (response && !response.error) {
         this.facebookPosts = response.data;
         console.log('Facebook Feed:', this.facebookPosts);
@@ -49,7 +48,6 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  // Placeholder for fetching Instagram feed
   getInstagramFeed() {
     console.log('Instagram feed fetching to be implemented');
   }

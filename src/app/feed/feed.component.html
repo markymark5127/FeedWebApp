@@ -7,9 +7,23 @@
     <h2><i class="fab fa-facebook-square"></i> Facebook Feed</h2>
     <div *ngFor="let post of facebookPosts" class="feed-card">
       <p>{{ post.message }}</p>
-      <img *ngIf="post.picture" [src]="post.picture" alt="Facebook post image">
-      <div *ngIf="post.source" class="video-container">
-        <iframe [src]="post.source | safeUrl" frameborder="0" allowfullscreen></iframe>
+
+      <!-- Displaying multiple media items in a carousel -->
+      <div *ngIf="post.attachments">
+        <carousel>
+          <ng-container *ngFor="let attachment of post.attachments.data">
+            <ng-container *ngIf="attachment.type === 'photo' || attachment.type === 'album'">
+              <slide *ngIf="attachment.media.image">
+                <img [src]="attachment.media.image.src" alt="Facebook post image">
+              </slide>
+              <ng-container *ngIf="attachment.subattachments">
+                <slide *ngFor="let subattachment of attachment.subattachments.data">
+                  <img [src]="subattachment.media.image.src" alt="Facebook post image">
+                </slide>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </carousel>
       </div>
     </div>
   </div>
@@ -18,7 +32,12 @@
     <h2><i class="fab fa-instagram"></i> Instagram Feed</h2>
     <div *ngFor="let post of instagramPosts" class="feed-card">
       <p>{{ post.caption }}</p>
-      <img *ngIf="post.media_type === 'IMAGE' || post.media_type === 'CAROUSEL_ALBUM'" [src]="post.media_url" alt="Instagram post image">
+      <carousel *ngIf="post.media_type === 'CAROUSEL_ALBUM'">
+        <slide *ngFor="let media of post.media_children.data">
+          <img [src]="media.media_url" alt="Instagram post image">
+        </slide>
+      </carousel>
+      <img *ngIf="post.media_type === 'IMAGE'" [src]="post.media_url" alt="Instagram post image">
       <div *ngIf="post.media_type === 'VIDEO'" class="video-container">
         <video controls [src]="post.media_url"></video>
       </div>
