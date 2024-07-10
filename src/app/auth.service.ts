@@ -32,7 +32,7 @@ export class AuthService {
 
     (window as any).fbAsyncInit = () => {
       FB.init({
-        appId: '1395205587818906', // instagram id: 840265504266295
+        appId: '1395205587818906', // instagram id: 84026550426629
         cookie: true,
         xfbml: true,
         version: 'v12.0'
@@ -63,7 +63,7 @@ export class AuthService {
           observer.next(false);
           observer.complete();
         }
-      }, { scope: 'public_profile,email,pages_manage_posts,pages_read_engagement,publish_to_groups' });
+      }, { scope: 'public_profile,email' });
     });
   }
 
@@ -74,6 +74,18 @@ export class AuthService {
       observer.next(false);
       observer.complete();
     });
+  }
+
+  logoutOfFacebook(): void {
+    FB.logout((response: any) => {
+      this.facebookAccessToken = null;
+      this.facebookAuthSubject$.next(null);
+    });
+  }
+
+  logoutOfInstagram(): void {
+    this.instagramAccessToken = null;
+    this.instagramAuthSubject$.next(null);
   }
 
   postToFeed(formData: FormData): Observable<any> {
